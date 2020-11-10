@@ -1,0 +1,134 @@
+PyExpressoForm:
+
+<PyExpressoForm>:
+    orientation: "vertical"
+    regexp: reg_exp
+    test1: test_1
+    test2: test_2
+    test3: test_3
+    BoxLayout:
+        height: "30dp" #
+        size_hint_y: None
+        Button:
+            id: buttonSave
+            size_hint_x: 15 #
+            text: "Save"
+            background_color: (0.67, 0.3, 0.13, 1.0)
+            on_release: root.show_save()
+        Button:
+            id: buttonLoad
+            size_hint_x: 15 #
+            text: "Load"
+            background_color: (0.67, 0.3, 0.13, 1.0)
+            on_release: root.show_load()
+        Button:
+            id: buttonHelp
+            size_hint_x: 15 #
+            text: "Info"
+            background_color: (0.67, 0.3, 0.13, 1.0)
+            on_press: root.popHelp()
+    BoxLayout:
+#        height: "50dp" #
+#        size_hint_y: None
+        Label:
+            size_hint_x: 30 #
+            font_size: self.height/3
+            text: "Reg Expr"
+        TextInput:
+            id: reg_exp
+            size_hint_x: 70 #
+            font_size: self.height/4
+#            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            on_text: root.validate_regexp()
+    BoxLayout:
+#        height: "50dp" #
+#        size_hint_y: None
+        Label:
+            size_hint_x: 30 #
+            font_size: self.height/3
+            text: "Test 1"
+        TextInput:
+            id: test_1
+            multiline: False
+            size_hint_x: 70 #
+            font_size: self.height/2
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            on_text: root.validate_test1()
+    BoxLayout:
+#        height: "50dp" #
+#        size_hint_y: None
+        Label:
+            size_hint_x: 30 #
+            font_size: self.height/3
+            text: "Test 2"
+        TextInput:
+            id: test_2
+            multiline: False
+            size_hint_x: 70 #
+            font_size: self.height/2
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            on_text: root.validate_test2()
+    BoxLayout:
+#        height: "50dp" #
+#        size_hint_y: None
+        Label:
+            size_hint_x: 30 #
+            font_size: self.height/3
+            text: "Test 3"
+        TextInput:
+            id: test_3
+            multiline: False
+            size_hint_x: 70 #
+            font_size: self.height/2
+            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+            on_text: root.validate_test3()
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                background_color: (0.67, 0.3, 0.13, 1.0)
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                background_color: (0.67, 0.3, 0.13, 1.0)
+                on_release: root.load(filechooser.path, filechooser.selection)
+
+<SaveDialog>:
+    text_input: text_input
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+
+        TextInput:
+            id: text_input
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                background_color: (0.67, 0.3, 0.13, 1.0)
+                on_release: root.cancel()
+
+            Button:
+                text: "Save"
+                background_color: (0.67, 0.3, 0.13, 1.0)
+                on_release: root.save(filechooser.path, text_input.text)

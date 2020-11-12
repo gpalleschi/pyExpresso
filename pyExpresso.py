@@ -1,3 +1,4 @@
+from kivy_deps import sdl2, glew, gstreamer
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.textinput import TextInput
@@ -7,10 +8,18 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.image import Image
 from kivy.uix.button import Button
-from kivy_deps import sdl2, glew
 import re
 import os
 
+def reset():
+    import kivy.core.window as window
+    from kivy.base import EventLoop
+    if not EventLoop.event_listeners:
+        from kivy.cache import Cache
+        window.Window = window.core_select_lib('window', window.window_impl, True)
+        Cache.print_usage()
+        for cat in Cache._categories:
+            Cache._objects[cat] = {}
 
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
@@ -112,4 +121,5 @@ class pyExpresso(App):
         return PyExpressoForm()
 
 if __name__ == '__main__':
-	pyExpresso().run()
+    reset()
+    pyExpresso().run()

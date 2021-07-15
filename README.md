@@ -17,7 +17,7 @@ A Visual Tool to check regular expression written in Python using Kivy GUI frame
 ## Prerequisites
 
 [Python 3.x](https://www.python.org/)  
-[Kivy 1.11.1](https://kivy.org/#home)  
+[Kivy 2.0.0](https://kivy.org/#home)  
 
 ## Built With  
 

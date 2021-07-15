@@ -76,7 +76,7 @@ class PyExpressoForm(BoxLayout):
     def popHelp(self):
         box = BoxLayout(orientation='vertical')
         box.add_widget(Image(source='.\img\pyExpresso.png'))
-        box.add_widget(Label(text='           Version : 1.0\nAuthor  : Giovanni Palleschi'))
+        box.add_widget(Label(text='           Version : 1.1\nAuthor  : Giovanni Palleschi'))
         pop = Popup(title='pyExpresso',content=box,
                     size_hint=(None,None), size=(300, 300))
         pop.open()
